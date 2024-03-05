@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PAS REACT</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h1 :style="{color: textColor}">{{ message }}</h1>
+<br>
+        <input type="text" v-model="temp">
+        <button v-on:click="message = temp">ABRUTI</button>
+        <br>
+        <label>Changer couleur :</label>
+        <input type="checkbox" v-model="color" v-on:click="textColor = textColor === 'black' ? 'red' : 'black'">
+        <br>
+        <label>Afficher bg :</label>
+        <input type="checkbox" v-on:click="attr = attr === 'none' ? '' : 'none'">
+        <br>
+        <img :style="{display : attr}" src="https://pbs.twimg.com/profile_images/1652749478124744704/UaZaWCEV_400x400.jpg"/>
+        <br>
+        <input type="text" v-model="newElem">
+        <button v-on:click="faisUnTrucBatard()">Ajouter boustifaille</button>
+        <ul>
+            <h2>Pour un bon repas équilibré, il faut :</h2>
+            <li v-for="elem in elems">{{elem}}</li>
+        </ul>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                newElem : "",
+                attr : 'none',
+                temp : "",
+                message: 'Hello Vue!',
+                textColor: 'black',
+                elems : ["andouilles","boudin"]
+            },
+            methods:{
+                faisUnTrucBatard: function (){
+                    if(this.newElem!=""){
+                        this.elems.push(this.newElem);
+                        this.newElem=""
+                    }
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>
